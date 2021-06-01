@@ -1,4 +1,4 @@
-(ns first-day)
+(ns first-day-first-part)
 
 (require '[clojure.java.io :as io])
 
