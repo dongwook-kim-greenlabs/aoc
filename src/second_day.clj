@@ -1,4 +1,4 @@
-(ns second_day_first_part)
+(ns second_day)
 
 (def file-name "2day_part1_input.txt")
 
