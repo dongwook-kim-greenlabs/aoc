@@ -17,6 +17,9 @@
      (map #(Integer/parseInt %))
      (reduce +))
 
+; (reduce + (list 1 2 3)) = (+ (+ 1 2) 3))
+; (apply + (list 1 2 3)) = (+ 1 2 3)
+
 ;(->> input
 ;     (parse)
 ;     (process)
