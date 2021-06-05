@@ -1,8 +1,15 @@
-(ns third_day)
-(require '[clojure.string :as c-str])
-(require '[clojure.set :as c-set])
+(ns third_day
+  (:require [clojure.string :as c-str]
+            [clojure.set :as c-set]
+            [utils]))
 
 (def file-name "thirdday_input.txt")
+
+
+(def x1 "#1 @ 1,3: 4x4")
+(def x2 "#2 @ 3,1: 4x4")
+(def x3 "#3 @ 5,5: 2x2")
+
 
 (defn- split [raw-string]
   (map c-str/trim
@@ -22,22 +29,23 @@
   {(for [x (range margin-left (+ margin-left fabric-width))
          y (range margin-top (+ margin-top fabric-height))]
      [x y]) box-id})
+; key-value reverse 한 경우 zipmap
 
 (defn check-intersection [datum data]
   (map (fn [x] (apply c-set/intersection (map-set [datum x]))) data))
 
-(defn find-overlaps [cnt data]
+(defn find-overlaps [cnt [f & data]] ; 구조분해
   (let [overlaps (c-set/union cnt (set
                                     (apply c-set/union
-                                           (check-intersection (first data) (rest data)))))]
-    (if (not (empty? data))
-      (recur overlaps (rest data))
+                                           (check-intersection f data))))]
+    (if (seq data) ; not empty 대신 seq or some?
+      (recur overlaps data)
       cnt)))
 
 (->> (utils/read-lines file-name str)
      (map parse)
      (map get-fabrics)
-     (apply merge)
+     (apply merge) ;; +keys extract method 후 verb 로 naming
      (keys)
      (find-overlaps #{})
      (count))
@@ -47,7 +55,7 @@
 (defn find-not-overlapped [overlapped data]
   (if (empty? (c-set/intersection (first data) overlapped))
     (first data)
-    (if (not (empty? data))
+    (if (seq data)
       (recur overlapped (rest data)))))
 
 (def parsed-data (->> (utils/read-lines file-name str)
@@ -64,7 +72,7 @@
                          (keys)
                          (map set)
                          (find-not-overlapped overlapped)
-                         (seq)
+                         (seq) ; seq + sort 대신 sorted-set 으로
                          (sort)))
 
 (get (apply merge parsed-data) not-overlapped)
