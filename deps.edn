@@ -1,4 +1,5 @@
-{:deps {}
+{:deps
+        {clj-time/clj-time {:mvn/version "0.15.2"}}
  :paths [:clj-paths :resource-paths]
  :aliases
         {:clj-paths ["src/clj"]
