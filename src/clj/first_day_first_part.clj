@@ -1,4 +1,6 @@
-(ns first-day-first-part)
+(ns first-day-first-part
+  (:require [clojure.java.io :as io]
+            [utils]))
 
 (def file-name "firstday_input.txt")
 
@@ -29,3 +31,8 @@
 (comment
   (def input (->> (slurp (io/resource file-name))
                   (clojure.string/split-lines))))
+
+
+;refactor
+(->> (utils/read-lines file-name #(Integer/parseInt %))
+     (reduce +))

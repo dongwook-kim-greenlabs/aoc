@@ -34,13 +34,13 @@
       (recur overlaps (rest data))
       cnt)))
 
-(->> (utils/read-lines file-name str)
-     (map parse)
-     (map get-fabrics)
-     (apply merge)
-     (keys)
-     (find-overlaps #{})
-     (count))
+(comment (->> (utils/read-lines file-name str)
+              (map parse)
+              (map get-fabrics)
+              (apply merge)
+              (keys)
+              (find-overlaps #{})
+              (count)))
 
 ; part2 solution
 
@@ -67,4 +67,4 @@
                          (seq)
                          (sort)))
 
-(get (apply merge parsed-data) not-overlapped)
+(comment (get (apply merge parsed-data) not-overlapped))

@@ -1,4 +1,5 @@
-(ns first-day-second-part)
+(ns first-day-second-part
+  (:require [utils]))
 
 (def file-name "firstday_input.txt")
 ;(defn repeat-input [data]
@@ -19,4 +20,3 @@
 ; (take 1 coll) = (first coll)
 
 ;(#{1,2,3} 1)
-
