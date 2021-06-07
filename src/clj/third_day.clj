@@ -42,13 +42,13 @@
       (recur overlaps data)
       cnt)))
 
-(->> (utils/read-lines file-name str)
-     (map parse)
-     (map get-fabrics)
-     (apply merge) ;; +keys extract method 후 verb 로 naming
-     (keys)
-     (find-overlaps #{})
-     (count))
+(comment (->> (utils/read-lines file-name str)
+              (map parse)
+              (map get-fabrics)
+              (apply merge)
+              (keys)
+              (find-overlaps #{})
+              (count)))
 
 ; part2 solution
 
@@ -75,4 +75,4 @@
                          (seq) ; seq + sort 대신 sorted-set 으로
                          (sort)))
 
-(get (apply merge parsed-data) not-overlapped)
+(comment (get (apply merge parsed-data) not-overlapped))
