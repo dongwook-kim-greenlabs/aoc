@@ -18,17 +18,26 @@
     data에서 truthy 값만 세어 반환합니다."
   (count (keep data)))
 
-(*
-  (->> (utils/read-lines file-name frequencies)
-       (map #(exists? % 2))
-       (identity-counter))
-  (->> (utils/read-lines file-name frequencies)
-       (map #(exists? % 3))
-       (identity-counter)))
+(let [freq (utils/read-lines file-name frequencies)]
+  (->> [2 3]
+       (map #(exists? freq %))
+       (map identity-counter)))
+
+
+
+
+;(defn solve [input]
+;  (let [twos (->)]
+;    (* twos threes)))
+;
+;(->> (parse input)
+;     (solve))
 
 ;part 2 solution
 
-(defn compare-string [orig-string dest-string]
+(defn compare-string
+
+  [orig-string dest-string]
   (map (fn [orig-string dest-string] (= orig-string dest-string)) orig-string dest-string))
 
 (defn get-correct-box [orig-string dest-string]
