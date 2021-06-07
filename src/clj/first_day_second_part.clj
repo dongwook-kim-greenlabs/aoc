@@ -7,12 +7,28 @@
 ;    (utils/read-lines file-name #(Integer/parseInt %))
 ;    (drop 1 data)))
 
-(loop [acc-result 0
-       seen? #{}
-       data (cycle (utils/read-lines file-name #(Integer/parseInt %)))] ; repeat-input 으로 호출하도록
-  (if (seen? acc-result)
-    acc-result
-    (recur (+ acc-result (first data)) (conj seen? acc-result) (rest data))))
+(let [input (utils/read-lines file-name #(Integer/parseInt %))]
+  (loop [acc-result 0
+         seen? #{}
+         data (cycle input)]
+    (if (seen? acc-result)
+      acc-result
+      (recur (+ acc-result (first data))
+             (conj seen? acc-result)
+             (rest data)))))
+
+(defn acc-seqs [input] (reductions + input))
+
+(defn get-first-duplicated-value [coll]
+  (loop [[first-ele & rest-eles] coll
+         acc-seqs]
+    (if rest-eles
+      (recur rest-eles acc-seqs))))
+
+;(->> (utils/read-lines ...)
+;     acc-seqs
+;     get-first-duplicated-value)
+;SOLID
 
 ;(cycle (utils/read-lines file-name #(Integer/parseInt %)))
 
