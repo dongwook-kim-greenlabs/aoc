@@ -206,9 +206,7 @@
        count))
 
 (comment
-  (parse-initial-positions (read-lines file-name str)
-                           (map (fn [[x _]] [x]) (parse-initial-positions (read-lines file-name str))))
-
+  (parse-initial-positions (read-lines file-name str))
 
   (->> (read-lines file-name str)
        parse-initial-positions
