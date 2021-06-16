@@ -1,5 +1,7 @@
 {:deps
-        {clj-time/clj-time {:mvn/version "0.15.2"}}
+        {clj-time/clj-time {:mvn/version "0.15.2"}
+         org.flatland/ordered {:mvn/version "1.5.9"}}
+
 
  :paths [:clj-paths :resource-paths]
  :aliases
